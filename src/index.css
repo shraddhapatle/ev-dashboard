@@ -1,0 +1,397 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background-color: #0b0d0e;
+}
+
+body {
+  font-family: 'Poppins', system-ui, sans-serif;
+  color: #cbd5e1;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+
+/* ---------- Skeuomorphic Dark Space Void ---------- */
+.mesh-bg {
+  background-color: #080a0c;
+  background-image:
+    radial-gradient(at 18% 22%, rgba(148, 163, 184, 0.08) 0px, transparent 45%),
+    radial-gradient(at 82% 8%,  rgba(30, 41, 59, 0.25) 0px, transparent 50%),
+    radial-gradient(at 50% 92%, rgba(15, 23, 42, 0.3) 0px, transparent 55%),
+    radial-gradient(at 92% 80%, rgba(148, 163, 184, 0.04) 0px, transparent 45%);
+}
+
+/* ---------- Modern Skeuomorphic Panels (Metallic Bevel & Glass) ---------- */
+.glass-panel {
+  background: linear-gradient(135deg, rgba(28, 33, 40, 0.7) 0%, rgba(15, 18, 22, 0.8) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.7);
+  border-right: 1.5px solid rgba(0, 0, 0, 0.7);
+  box-shadow: 
+    0 12px 32px rgba(0, 0, 0, 0.65), 
+    inset 1px 1px 1px rgba(255, 255, 255, 0.05),
+    inset -1px -1px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  position: relative;
+}
+
+.glass-panel-heavy {
+  background: linear-gradient(135deg, rgba(20, 24, 29, 0.85) 0%, rgba(8, 10, 12, 0.95) 100%);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.14);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.85);
+  border-right: 2px solid rgba(0, 0, 0, 0.85);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.75), 
+    inset 1px 1.5px 1px rgba(255, 255, 255, 0.06),
+    inset -1px -1.5px 1px rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  position: relative;
+}
+
+.inner-carve {
+  background: rgba(8, 10, 12, 0.65);
+  box-shadow: 
+    inset 0 3px 8px rgba(0, 0, 0, 0.8), 
+    inset 0 1px 2px rgba(0, 0, 0, 0.9),
+    0 1px 0 rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}
+
+.glow-text-primary {
+  text-shadow: 0 0 12px rgba(226, 232, 240, 0.4), 0 0 3px rgba(226, 232, 240, 0.6);
+}
+
+.glow-text-error {
+  text-shadow: 0 0 16px rgba(255, 84, 84, 0.4), 0 0 4px rgba(255, 84, 84, 0.7);
+}
+
+/* ---------- Tactile Beveled Button ---------- */
+.tactile-button {
+  background: linear-gradient(180deg, #475569 0%, #334155 100%);
+  color: #f8fafc;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 2.5px solid rgba(0, 0, 0, 0.75);
+  border-right: 1.5px solid rgba(0, 0, 0, 0.65);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.4), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tactile-button:hover {
+  background: linear-gradient(180deg, #516278 0%, #3a4b61 100%);
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.45), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.tactile-button:active {
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+  transform: translateY(1.5px);
+  box-shadow: 
+    inset 0 3px 6px rgba(0, 0, 0, 0.8),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.ghost-button {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  transition: all 0.15s ease;
+}
+.ghost-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #cbd5e1;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- Primary call-to-action button (EV-green accent) ---------- */
+.cta-button {
+  background: linear-gradient(180deg, rgba(57, 255, 106, 0.14) 0%, #334155 0%, #1e293b 100%);
+  color: #f8fafc;
+  border-top: 1px solid rgba(57, 255, 106, 0.35);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 2.5px solid rgba(0, 0, 0, 0.75);
+  border-right: 1.5px solid rgba(0, 0, 0, 0.65);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cta-button:hover {
+  background: linear-gradient(180deg, rgba(57, 255, 106, 0.22) 0%, #3a4b61 0%, #243345 100%);
+  border-top-color: rgba(57, 255, 106, 0.55);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), 0 0 14px rgba(57, 255, 106, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.cta-button:active {
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+  transform: translateY(1.5px);
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* ---------- Hoverable nav/list rows (sidebars, station lists) ---------- */
+.nav-row,
+.station-row {
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.nav-row:hover,
+.station-row:hover {
+  background: rgba(57, 255, 106, 0.05);
+}
+
+/* ---------- Mobile alert acknowledge button ---------- */
+.ack-button {
+  background: rgba(245, 181, 68, 0.08);
+  border: 1px solid rgba(245, 181, 68, 0.3);
+  color: #f5c468;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.ack-button:hover {
+  background: rgba(245, 181, 68, 0.16);
+  box-shadow: 0 0 12px rgba(245, 181, 68, 0.2);
+}
+.ack-button-active {
+  background: rgba(57, 255, 106, 0.08);
+  border-color: rgba(57, 255, 106, 0.3);
+  color: #39ff6a;
+}
+.ack-button-active:hover {
+  background: rgba(57, 255, 106, 0.16);
+  box-shadow: 0 0 12px rgba(57, 255, 106, 0.2);
+}
+
+/* ---------- Login page ambient glow ---------- */
+.login-glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(57, 255, 106, 0.1) 0%, transparent 70%);
+  animation: loginpulse 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes loginpulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 0.9; transform: scale(1.15); }
+}
+
+/* ---------- Ambient Steel Top Glow ---------- */
+.wall-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(148, 163, 184, 0) 0%,
+    rgba(148, 163, 184, 0.7) 20%,
+    #f8fafc 50%,
+    rgba(148, 163, 184, 0.7) 80%,
+    rgba(148, 163, 184, 0) 100%
+  );
+  border-radius: 4px;
+  box-shadow: 
+    0 0 8px rgba(148, 163, 184, 0.5), 
+    0 2px 12px rgba(148, 163, 184, 0.2);
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* ---------- Inset Neon Range Slider ---------- */
+input[type='range'].neon-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(4, 5, 6, 0.85);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+  outline: none;
+}
+input[type='range'].neon-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f8fafc, #64748b 55%, #1e293b);
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.6), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+input[type='range'].neon-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f8fafc, #64748b 55%, #1e293b);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ---------- Annotation callouts ---------- */
+.annotation {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  padding: 6px 10px;
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+  transform: translate(14px, -50%);
+  user-select: none;
+}
+.annotation-ok {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.annotation-warn {
+  background: rgba(60, 42, 8, 0.75);
+  border: 1px solid rgba(245, 181, 68, 0.4);
+  color: #f5c468;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.annotation-crit {
+  background: rgba(70, 8, 8, 0.78);
+  border: 1px solid rgba(255, 92, 92, 0.45);
+  color: #ff9d9d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  animation: critpulse 1.6s ease-in-out infinite;
+}
+@keyframes critpulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(255, 64, 64, 0.2); }
+  50%       { box-shadow: 0 0 20px rgba(255, 64, 64, 0.45); }
+}
+
+/* ---------- Status dot ---------- */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  flex: none;
+}
+.status-ok {
+  background: #39ff6a;
+  box-shadow: 0 0 6px rgba(57, 255, 106, 0.7);
+}
+.status-warn {
+  background: #f5b544;
+  box-shadow: 0 0 6px rgba(245, 181, 68, 0.7);
+}
+.status-crit {
+  background: #ff5c5c;
+  box-shadow: 0 0 8px rgba(255, 92, 92, 0.8);
+  animation: dotpulse 1.2s ease-in-out infinite;
+}
+@keyframes dotpulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ---------- Scrollbars ---------- */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ---------- Leaflet dark overrides ---------- */
+.leaflet-container {
+  background: #080a0c;
+  font-family: 'JetBrains Mono', monospace;
+}
+.leaflet-tooltip.astrikos-tip {
+  background: rgba(8, 10, 12, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  font-size: 11px;
+  padding: 5px 9px;
+}
+.leaflet-tooltip.astrikos-tip::before { display: none; }
+.leaflet-control-attribution {
+  background: rgba(0, 0, 0, 0.7) !important;
+  color: #64748b !important;
+  font-size: 9px;
+}
+.leaflet-control-attribution a { color: #94a3b8 !important; }
+.leaflet-interactive { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); }
+
+/* pulsing attention markers */
+.map-pulse {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 6px var(--c);
+  position: relative;
+}
+.map-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid var(--c);
+  animation: mappulse 1.6s ease-out infinite;
+}
+@keyframes mappulse {
+  0%   { transform: scale(0.7); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.map-van {
+  color: #94a3b8;
+  font-size: 24px !important;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+.fade-in {
+  animation: fadein 0.3s ease both;
+}
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

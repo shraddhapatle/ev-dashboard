@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sajag Tactical Elite - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Skeuomorphic Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(28, 32, 34, 0.6);
+            /* surface-container with opacity */
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+            border-right: 1px solid rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            position: relative;
+        }
+
+        .glass-panel-heavy {
+            background: rgba(16, 20, 22, 0.8);
+            /* surface with opacity */
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 1px solid rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+            border-right: 1px solid rgba(0, 0, 0, 0.5);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.02);
+            border-radius: 24px;
+            position: relative;
+        }
+
+        .inner-carve {
+            background: rgba(11, 15, 16, 0.8);
+            /* surface-container-lowest */
+            box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+        }
+
+        .mesh-bg {
+            background-color: #101416;
+            /* background */
+            background-image:
+                radial-gradient(at 20% 30%, rgba(0, 242, 255, 0.08) 0px, transparent 50%),
+                radial-gradient(at 80% 10%, rgba(58, 73, 75, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 80%, rgba(0, 106, 113, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .glow-text-primary {
+            text-shadow: 0 0 16px rgba(0, 242, 255, 0.5), 0 0 4px rgba(0, 242, 255, 0.8);
+        }
+
+        .tactile-button {
+            background: linear-gradient(145deg, #00f2ff, #00dbe7);
+            color: #002022;
+            box-shadow: 0 4px 16px rgba(0, 242, 255, 0.25), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+            transition: all 0.2s ease;
+        }
+
+        .tactile-button:active {
+            box-shadow: inset 0 4px 8px rgba(0, 79, 84, 0.5);
+            transform: translateY(2px);
+        }
+
+        /* Wall-Glow Tube Light Effect */
+        .wall-glow {
+            position: relative;
+        }
+
+        .wall-glow::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 4px;
+            background: linear-gradient(90deg,
+                    rgba(0, 242, 255, 0) 0%,
+                    rgba(0, 242, 255, 1) 20%,
+                    #e1fdff 50%,
+                    rgba(0, 242, 255, 1) 80%,
+                    rgba(0, 242, 255, 0) 100%);
+            border-radius: 4px;
+            box-shadow:
+                0 0 10px rgba(0, 242, 255, 0.8),
+                0 4px 20px rgba(0, 242, 255, 0.4),
+                0 8px 40px rgba(0, 242, 255, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.8),
+                inset 0 -1px 1px rgba(0, 79, 84, 0.8);
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .wall-glow::after {
+            content: '';
+            position: absolute;
+            top: 16px;
+            /* Positioned slightly below the tube */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 60px;
+            background: radial-gradient(ellipse at top, rgba(0, 242, 255, 0.15) 0%, transparent 70%);
+            z-index: 1;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(224, 227, 229, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(224, 227, 229, 0.2);
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#101416",
+                        "surface-container": "#1c2022",
+                        "secondary-fixed": "#b1edf2",
+                        "on-secondary-fixed": "#002022",
+                        "primary": "#e1fdff",
+                        "secondary": "#96d1d6",
+                        "inverse-surface": "#e0e3e5",
+                        "error-container": "#93000a",
+                        "surface-variant": "#313537",
+                        "on-tertiary-fixed-variant": "#42474b",
+                        "surface": "#101416",
+                        "primary-container": "#00f2ff",
+                        "outline-variant": "#3a494b",
+                        "on-primary-fixed-variant": "#004f54",
+                        "on-tertiary-container": "#5b6064",
+                        "surface-bright": "#363a3c",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#dfe3e7",
+                        "tertiary-fixed-dim": "#c2c7cb",
+                        "on-tertiary": "#2c3134",
+                        "secondary-fixed-dim": "#96d1d6",
+                        "primary-fixed": "#74f5ff",
+                        "surface-container-highest": "#313537",
+                        "on-primary-container": "#006a71",
+                        "surface-container-lowest": "#0b0f10",
+                        "surface-container-low": "#181c1e",
+                        "surface-container-high": "#272b2c",
+                        "on-secondary-container": "#84bfc4",
+                        "inverse-on-surface": "#2d3133",
+                        "inverse-primary": "#00696f",
+                        "on-error": "#690005",
+                        "tertiary-container": "#d7dbdf",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#002022",
+                        "tertiary": "#f3f8fc",
+                        "on-surface": "#e0e3e5",
+                        "on-background": "#e0e3e5",
+                        "secondary-container": "#074f54",
+                        "on-primary": "#00363a",
+                        "outline": "#849495",
+                        "on-secondary-fixed-variant": "#074f54",
+                        "surface-tint": "#00dbe7",
+                        "on-tertiary-fixed": "#171c1f",
+                        "on-surface-variant": "#b9cacb",
+                        "on-secondary": "#00363a",
+                        "primary-fixed-dim": "#00dbe7",
+                        "background": "#101416"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "unit": "4px",
+                        "stack-sm": "8px",
+                        "container-padding-desktop": "40px",
+                        "container-padding-mobile": "20px",
+                        "stack-lg": "32px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Poppins"],
+                        "body-lg": ["Poppins"],
+                        "body-sm": ["Poppins"],
+                        "headline-lg": ["Poppins"],
+                        "title-md": ["Poppins"],
+                        "display-lg": ["Poppins"],
+                        "label-caps": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "title-md": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="mesh-bg text-on-surface min-h-screen overflow-hidden font-body-sm text-body-sm">
+    <!-- Top App Bar -->
+    <header
+        class="bg-surface/90 backdrop-blur-xl w-full h-20 border-b border-white/5 shadow-md flex items-center justify-between px-container-padding-desktop fixed top-0 z-50 wall-glow">
+        <div class="flex items-center gap-4 relative z-30">
+            <span class="font-display-lg text-[36px] text-primary-container tracking-tight glow-text-primary">Tactical
+                Command</span>
+        </div>
+        <div class="flex items-center gap-6 relative z-30">
+            <div class="inner-carve flex items-center px-4 py-2 w-72 gap-2">
+                <span class="material-symbols-outlined text-on-surface-variant text-xl">search</span>
+                <input
+                    class="bg-transparent border-none text-on-surface placeholder-on-surface-variant focus:ring-0 w-full font-body-sm text-body-sm"
+                    placeholder="Search operations..." type="text" />
+            </div>
+            <button
+                class="hover:bg-surface-bright/50 transition-colors p-2 rounded-full active:scale-95 transition-transform text-on-surface">
+                <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button
+                class="hover:bg-surface-bright/50 transition-colors p-2 rounded-full active:scale-95 transition-transform text-on-surface">
+                <span class="material-symbols-outlined">settings</span>
+            </button>
+            <div
+                class="w-10 h-10 rounded-full border-2 border-primary-container/50 overflow-hidden shadow-[0_0_15px_rgba(0,242,255,0.4)]">
+                <img alt="User avatar" class="w-full h-full object-cover"
+                    data-alt="A portrait of a highly professional individual in a tactical command setting, bathed in soft, cool light. The scene implies advanced technology and strategic oversight, aligning with a premium, skeuomorphic aesthetic in a deep slate and teal environment."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQxrs4XpRwnh0lnv6vKwWFbxyV8YDrCke0YRRD_VfhR0jjb68jRoBRrQYFUi3Ow41K9bL2xBhZXlJDwFXT68TrJeXoCEAQetBaMfZGJRoA7uc76WqsHD04RA4CPjBWT5z2aP0s78CoXaFryWeHPEFq6q35Fbajj1_qj0KzpvBkAe6qafmWzKNvKzgb2a6uaTAOSnJRgeno-pIOR0Vte7eJgHRXvBQRpp6J7iJWR-BqkCY6xm0nICpF-tSJ57PZHGZEI53P__pqSRWL" />
+            </div>
+        </div>
+    </header>
+    <div class="flex h-screen pt-20">
+        <!-- Side Nav Bar -->
+        <nav
+            class="bg-surface-container-low/95 backdrop-blur-2xl h-full w-64 rounded-r-2xl border-r border-white/5 shadow-2xl fixed left-0 top-20 flex flex-col z-40 py-8">
+            <div class="px-6 mb-10 text-center">
+                <h2 class="font-headline-lg text-[28px] text-primary-container glow-text-primary">Alpha Unit</h2>
+                <span
+                    class="inline-block mt-2 px-3 py-1 bg-primary-container/10 text-primary-container font-label-caps text-label-caps rounded-full border border-primary-container/30">Operational</span>
+            </div>
+            <div class="flex-1 px-3 space-y-2">
+                <a class="flex items-center gap-4 bg-primary-container text-on-primary-container rounded-lg shadow-[inset_0_2px_4px_rgba(255,255,255,0.4),0_4px_8px_rgba(0,242,255,0.2)] mx-3 py-3 px-4 font-title-md text-[15px]"
+                    href="#">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                    Dashboard
+                </a>
+                <a class="flex items-center gap-4 text-on-surface-variant mx-3 py-3 px-4 rounded-lg hover:bg-surface-variant/40 hover:text-primary-container transition-all active:inner-shadow-lg duration-200 font-title-md text-[15px]"
+                    href="#">
+                    <span class="material-symbols-outlined">monitoring</span>
+                    Analytics
+                </a>
+                <a class="flex items-center gap-4 text-on-surface-variant mx-3 py-3 px-4 rounded-lg hover:bg-surface-variant/40 hover:text-primary-container transition-all active:inner-shadow-lg duration-200 font-title-md text-[15px]"
+                    href="#">
+                    <span class="material-symbols-outlined">military_tech</span>
+                    Operations
+                </a>
+                <a class="flex items-center gap-4 text-on-surface-variant mx-3 py-3 px-4 rounded-lg hover:bg-surface-variant/40 hover:text-primary-container transition-all active:inner-shadow-lg duration-200 font-title-md text-[15px]"
+                    href="#">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    Resources
+                </a>
+                <a class="flex items-center gap-4 text-on-surface-variant mx-3 py-3 px-4 rounded-lg hover:bg-surface-variant/40 hover:text-primary-container transition-all active:inner-shadow-lg duration-200 font-title-md text-[15px]"
+                    href="#">
+                    <span class="material-symbols-outlined">history</span>
+                    History
+                </a>
+            </div>
+            <div class="px-6 mt-auto mb-6">
+                <button
+                    class="w-full tactile-button py-3 rounded-xl font-title-md text-[15px] uppercase tracking-wider font-bold">
+                    Deploy Unit
+                </button>
+            </div>
+            <div class="border-t border-white/5 pt-4 px-3 space-y-2">
+                <a class="flex items-center gap-4 text-on-surface-variant mx-3 py-2 px-4 rounded-lg hover:bg-surface-variant/40 hover:text-primary-container transition-all font-title-md text-[15px]"
+                    href="#">
+                    <span class="material-symbols-outlined">help</span>
+                    Help
+                </a>
+                <a class="flex items-center gap-4 text-on-surface-variant mx-3 py-2 px-4 rounded-lg hover:bg-surface-variant/40 hover:text-primary-container transition-all font-title-md text-[15px]"
+                    href="#">
+                    <span class="material-symbols-outlined">logout</span>
+                    Logout
+                </a>
+            </div>
+        </nav>
+        <!-- Main Content Canvas -->
+        <main class="flex-1 ml-64 p-gutter grid grid-cols-12 gap-gutter h-full overflow-y-auto pb-32">
+            <!-- Map Panel -->
+            <section
+                class="col-span-8 glass-panel wall-glow flex flex-col h-[calc(100vh-140px)] min-h-[600px] overflow-hidden">
+                <div
+                    class="p-6 border-b border-white/5 flex justify-between items-center bg-surface/50 backdrop-blur-md relative z-30 pt-8">
+                    <h3 class="font-headline-lg text-[24px] text-on-surface flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary-container">my_location</span>
+                        Global Tactical Overlay
+                    </h3>
+                    <div class="flex gap-2">
+                        <button
+                            class="bg-surface-container-highest/80 p-2 rounded-lg text-on-surface-variant hover:text-primary-container transition-colors inner-carve border border-white/5">
+                            <span class="material-symbols-outlined text-sm">filter_alt</span>
+                        </button>
+                        <button
+                            class="bg-surface-container-highest/80 p-2 rounded-lg text-on-surface-variant hover:text-primary-container transition-colors inner-carve border border-white/5">
+                            <span class="material-symbols-outlined text-sm">layers</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex-1 relative inner-carve m-4 mt-0 overflow-hidden rounded-xl border border-white/5">
+                    <!-- Map Placeholder Image -->
+                    <img alt="Tactical Map" class="w-full h-full object-cover opacity-70 mix-blend-screen"
+                        data-alt="A highly detailed, futuristic global map projection displayed on a dark, glassmorphic screen. The map is illuminated in shades of deep teal and glowing mint, emphasizing tactical zones with subtle, pulsing light points. The aesthetic is clean, professional, and sophisticated, avoiding any chaotic clutter while conveying complex data."
+                        data-location="Global Overlay"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYi6uoVhgg_-dAEoEx5A3fKNX3VSHiZ6jZsOyCQwVl-V609xRggQA0yRV42RUi3-67zyaZdmxyrcl2OhmCHSIAPFTdVXh8eJN81No6gQizv8sNPeG90x9y0TyKjrm5cC6RgE0fjbcA6F6yQZ1SHrs8rGEf1kNDqwjrRGI-gerO6w1h7qOqnI0hDQSAkVYvoM2CI7sgmPkXXSr-VlDJMHm_NewrH2XdvpaNvJKU0utOlahyEztViWt0QUWaPW-fFL3KTi_7BD0UXx1t" />
+                    <!-- Overlay Grid for aesthetic -->
+                    <div
+                        class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none">
+                    </div>
+                    <!-- Floating Widgets on Map -->
+                    <div class="absolute bottom-6 left-6 flex gap-4">
+                        <div class="glass-panel-heavy p-4 w-48 border border-white/5">
+                            <div
+                                class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase tracking-wider">
+                                Active Units</div>
+                            <div class="font-headline-lg text-[32px] text-primary-container">142</div>
+                            <div class="text-xs text-primary-container/80 flex items-center gap-1 mt-1">
+                                <span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+                                12% increase
+                            </div>
+                        </div>
+                        <div class="glass-panel-heavy p-4 w-48 border border-white/5">
+                            <div
+                                class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase tracking-wider">
+                                Threat Level</div>
+                            <div class="font-headline-lg text-[32px] text-error">Elevated</div>
+                            <div
+                                class="w-full bg-surface-container-lowest h-1.5 rounded-full mt-3 inner-carve overflow-hidden">
+                                <div
+                                    class="bg-error w-[65%] h-full rounded-full shadow-[0_0_8px_rgba(255,180,171,0.8)]">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- AI Advisory & Analytics (Right Column) -->
+            <section class="col-span-4 flex flex-col gap-gutter h-[calc(100vh-140px)]">
+                <!-- Thermal/Analytics Chart -->
+                <div class="glass-panel wall-glow p-6 flex-1 flex flex-col max-h-[40%]">
+                    <div class="flex justify-between items-center mb-6 pt-4 relative z-30">
+                        <h3 class="font-headline-lg text-[22px] text-on-surface">Thermal Signature</h3>
+                        <span class="material-symbols-outlined text-primary-container">thermostat</span>
+                    </div>
+                    <div
+                        class="flex-1 inner-carve p-4 relative overflow-hidden flex flex-col justify-end border border-white/5 rounded-xl">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-primary-container/5 to-transparent pointer-events-none">
+                        </div>
+                        <div class="h-full w-full flex items-end gap-2 px-2 relative z-10 pb-6">
+                            <div
+                                class="w-full bg-primary-fixed/20 rounded-t-md h-[40%] hover:bg-primary-fixed/40 transition-colors border-t border-primary-container/30">
+                            </div>
+                            <div
+                                class="w-full bg-primary-fixed/30 rounded-t-md h-[60%] hover:bg-primary-fixed/50 transition-colors border-t border-primary-container/30">
+                            </div>
+                            <div
+                                class="w-full bg-primary-fixed/50 rounded-t-md h-[85%] hover:bg-primary-fixed/70 transition-colors border-t border-primary-container/40 shadow-[0_-5px_15px_rgba(0,242,255,0.2)]">
+                            </div>
+                            <div
+                                class="w-full bg-error/70 rounded-t-md h-[95%] hover:bg-error/90 transition-colors border-t border-error/60 shadow-[0_-5px_20px_rgba(255,180,171,0.4)]">
+                            </div>
+                            <div
+                                class="w-full bg-primary-fixed/40 rounded-t-md h-[70%] hover:bg-primary-fixed/60 transition-colors border-t border-primary-container/30">
+                            </div>
+                            <div
+                                class="w-full bg-primary-fixed/20 rounded-t-md h-[45%] hover:bg-primary-fixed/40 transition-colors border-t border-primary-container/30">
+                            </div>
+                        </div>
+                        <div
+                            class="flex justify-between absolute bottom-4 left-4 right-4 text-xs text-on-surface-variant font-label-caps">
+                            <span>00:00</span>
+                            <span>04:00</span>
+                            <span>08:00</span>
+                            <span>12:00</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Analysis -->
+                <div class="glass-panel wall-glow p-6 flex-[1.5] flex flex-col overflow-hidden">
+                    <div class="flex justify-between items-center mb-6 pt-4 relative z-30">
+                        <h3 class="font-headline-lg text-[22px] text-on-surface flex items-center gap-2">
+                            <span class="material-symbols-outlined text-secondary"
+                                style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+                            AI Advisory
+                        </h3>
+                        <span
+                            class="text-[11px] px-2 py-1 bg-secondary-container text-on-secondary-container rounded-md font-label-caps border border-secondary/30 uppercase tracking-widest">Live</span>
+                    </div>
+                    <div class="flex-1 overflow-y-auto space-y-4 pr-2">
+                        <!-- Alert Item -->
+                        <div
+                            class="bg-surface-container-highest/60 p-4 rounded-xl border-l-4 border-error shadow-sm inner-carve border-t border-r border-b border-white/5 relative overflow-hidden group hover:bg-surface-container-highest/80 transition-colors">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-error/5 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                            </div>
+                            <div class="flex justify-between items-start mb-2 relative z-10">
+                                <span class="font-title-md text-[15px] text-error flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[16px]">warning</span>
+                                    Critical Anomaly
+                                </span>
+                                <span class="text-[11px] text-on-surface-variant font-label-caps">Just now</span>
+                            </div>
+                            <p class="text-sm text-on-surface mb-3 font-body-sm relative z-10">Unrecognized signature
+                                detected in Sector 7G. Immediate verification recommended.</p>
+                            <button
+                                class="text-xs text-primary-container font-medium hover:text-primary flex items-center gap-1 relative z-10 transition-colors">
+                                Analyze Data <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                            </button>
+                        </div>
+                        <!-- Info Item -->
+                        <div
+                            class="bg-surface-container-highest/60 p-4 rounded-xl border-l-4 border-primary-container shadow-sm inner-carve border-t border-r border-b border-white/5 relative overflow-hidden group hover:bg-surface-container-highest/80 transition-colors">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-primary-container/5 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                            </div>
+                            <div class="flex justify-between items-start mb-2 relative z-10">
+                                <span class="font-title-md text-[15px] text-primary-container flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[16px]">info</span>
+                                    Resource Optimization
+                                </span>
+                                <span class="text-[11px] text-on-surface-variant font-label-caps">12 mins ago</span>
+                            </div>
+                            <p class="text-sm text-on-surface mb-3 font-body-sm relative z-10">Re-routing power to
+                                secondary shields will increase efficiency by 14%.</p>
+                            <button
+                                class="text-xs text-primary-container font-medium hover:text-primary flex items-center gap-1 relative z-10 transition-colors">
+                                Execute <span class="material-symbols-outlined text-[14px]">done</span>
+                            </button>
+                        </div>
+                        <!-- Standard Item -->
+                        <div
+                            class="bg-surface-container-highest/40 p-4 rounded-xl border-l-4 border-secondary shadow-sm inner-carve border-t border-r border-b border-white/5 opacity-80 hover:opacity-100 transition-opacity">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="font-title-md text-[15px] text-secondary flex items-center gap-1">
+                                    <span class="material-symbols-outlined text-[16px]">update</span>
+                                    Routine Scan Complete
+                                </span>
+                                <span class="text-[11px] text-on-surface-variant font-label-caps">1 hr ago</span>
+                            </div>
+                            <p class="text-sm text-on-surface font-body-sm">All systems nominal across outer perimeter.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

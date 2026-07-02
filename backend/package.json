@@ -1,0 +1,28 @@
+{
+  "name": "sajag-ev-backend",
+  "version": "1.0.0",
+  "description": "Local backend for the Sajag EV Charging Infrastructure Dashboard POC (EESL / Delta DC fast chargers, Bengaluru & Nagpur hubs).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node seed.js"
+  },
+  "keywords": [
+    "ev-charging",
+    "eesl",
+    "digital-twin",
+    "express",
+    "mongoose"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

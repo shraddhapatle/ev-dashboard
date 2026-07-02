@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment — keep `.env.example`, ignore real secrets beyond the POC
+# (the POC `.env` is intentionally committed; uncomment the next line to ignore it)
+# .env
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,31 @@
+/**
+ * EV Station data type
+ * Represents a single EV charging station with all associated fields
+ */
+export interface EVStation {
+  uid: string
+  Name: string
+  vendor_name: string
+  address: string
+  latitude: number
+  longitude: number
+  city: string
+  country: string
+  open: string
+  close: string
+  logo_url?: string
+  staff?: string
+  payment_modes?: string
+  contact_numbers?: string
+  station_type?: string
+  postal_code?: string
+  zone?: string
+  available?: number | string
+  capacity?: string
+  cost_per_unit?: string
+  power_type?: string
+  total?: number | string
+  type?: string
+  vehicle_type?: string
+  [key: string]: any // Allow additional fields
+}
